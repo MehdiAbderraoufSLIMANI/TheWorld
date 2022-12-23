@@ -3,7 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  Map? dataTime;
+  Home({this.dataTime, super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -20,6 +21,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
     return Scaffold(
+      appBar: AppBar(title: Text('hello')),
       body: SafeArea(
         child: Center(
           child: Column(

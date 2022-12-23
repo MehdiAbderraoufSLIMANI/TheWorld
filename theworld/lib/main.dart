@@ -5,10 +5,10 @@ import 'package:theworld/pages/Loading.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/home',
+    initialRoute: '/',
     routes: {
       '/': (context) => const Loading(),
-      '/home': (context) => const Home(),
+      '/home': (context) => Home(),
       '/location': (context) => const Location(),
     },
   ));
