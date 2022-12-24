@@ -11,6 +11,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map data = {};
+
   @override
   void initState() {
     // TODO: implement initState
@@ -19,24 +21,42 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+
     // ignore: prefer_const_constructors
     return Scaffold(
       appBar: AppBar(title: Text('hello')),
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton.icon(
-                onPressed: () {
-                  setState(() {
-                    Navigator.pushNamed(context, "/location");
-                  });
-                },
-                icon: const Icon(Icons.location_city),
-                label: const Text("choose a city"),
-              )
-            ],
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+            child: Column(
+              children: [
+                TextButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      Navigator.pushNamed(context, "/location");
+                    });
+                  },
+                  icon: const Icon(Icons.location_city),
+                  label: const Text("choose a city"),
+                ),
+                Text(
+                  '${data['location']}',
+                  style: const TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 50),
+                Text(
+                  '${data['time']}',
+                  style: const TextStyle(
+                    fontSize: 70,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

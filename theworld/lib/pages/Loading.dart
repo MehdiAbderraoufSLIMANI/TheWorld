@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theworld/modles/TheTime.dart';
 import 'package:theworld/modles/Locationlist.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -11,12 +12,17 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   String? time = 'loading...';
-
+  String? location = 'loading...';
+  String? flag = 'loading...';
   void steupTime() async {
     worldTime wt = worldTime(endPoint: "Africa/Algiers");
     await wt.getTime();
-    setState(() {
-      time = wt.time;
+
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacementNamed(context, "/home", arguments: {
+      'time': wt.time,
+      'location': wt.location,
+      'flag': wt.flag,
     });
   }
 
@@ -31,7 +37,6 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
     steupTime();
-    // Navigator.pushReplacementNamed(context, "/home");
   }
 
   @override
