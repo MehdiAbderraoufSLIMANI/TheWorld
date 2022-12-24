@@ -17,12 +17,14 @@ class _LoadingState extends State<Loading> {
   void steupTime() async {
     worldTime wt = worldTime(endPoint: "Africa/Algiers");
     await wt.getTime();
+    await Future.delayed(Duration(seconds: 2));
 
     // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, "/home", arguments: {
       'time': wt.time,
       'location': wt.location,
       'flag': wt.flag,
+      'isday': wt.isday,
     });
   }
 
@@ -42,13 +44,11 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Text(time!),
-          ],
-        ),
+        body: Center(
+      child: LoadingAnimationWidget.halfTriangleDot(
+        size: 50,
+        color: Colors.black,
       ),
-    );
+    ));
   }
 }

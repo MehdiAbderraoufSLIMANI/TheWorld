@@ -8,7 +8,7 @@ class worldTime {
   String? flag;
   String endPoint = 'Africa/Algiers';
   worldTime({required this.endPoint});
-
+  bool isday = true;
   Future<void> getTime() async {
     //! semulation of geteing data
     try {
@@ -28,7 +28,14 @@ class worldTime {
       DateTime now = DateTime.parse(datetime);
       now = now.add(Duration(hours: offsatHours, minutes: offsatMinuts));
 
+      int the_houre = int.parse(DateFormat.H().format(now));
+
+      isday = ((the_houre >= 7) && (the_houre <= 15))
+          ? isday = true
+          : isday = false;
+
       time = DateFormat.jm().format(now);
+
       //print('${now.hour}:${now.minute}:${now.second}');
     } catch (e) {
       time = 'there is a errour Try again';
