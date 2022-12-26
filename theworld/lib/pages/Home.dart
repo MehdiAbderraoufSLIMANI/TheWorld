@@ -1,5 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Home extends StatefulWidget {
   Map? dataTime;
   Home({this.dataTime, super.key});
@@ -20,10 +23,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     data = ModalRoute.of(context)!.settings.arguments as Map;
     String theimgBackgr = data['isday'] ? '2.jpg' : '1.jpg';
-    print(theimgBackgr);
+    Color bgScafforld = data['isday']
+        ? const Color.fromARGB(255, 86, 179, 255)
+        : const Color.fromARGB(255, 50, 71, 139);
+
     // ignore: prefer_const_constructors
     return Scaffold(
-      appBar: AppBar(title: const Text('hello')),
+      backgroundColor: bgScafforld,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -38,7 +44,7 @@ class _HomeState extends State<Home> {
                   TextButton.icon(
                     onPressed: () {
                       setState(() {
-                        Navigator.pushNamed(context, "/location");
+                        Navigator.pushReplacementNamed(context, "/");
                       });
                     },
                     icon: const Icon(

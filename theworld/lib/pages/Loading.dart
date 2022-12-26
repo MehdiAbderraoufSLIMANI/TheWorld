@@ -15,9 +15,9 @@ class _LoadingState extends State<Loading> {
   String? location = 'loading...';
   String? flag = 'loading...';
   void steupTime() async {
-    worldTime wt = worldTime(endPoint: "Africa/Algiers");
+    var wt = ModalRoute.of(context)!.settings.arguments as worldTime;
     await wt.getTime();
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, "/home", arguments: {
@@ -38,11 +38,11 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
-    steupTime();
   }
 
   @override
   Widget build(BuildContext context) {
+    steupTime();
     return Scaffold(
         body: Center(
       child: LoadingAnimationWidget.halfTriangleDot(
